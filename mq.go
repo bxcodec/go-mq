@@ -10,7 +10,7 @@ import (
 // Subscribe subscribes to a channel for receive messages. The message will be
 // passed to h Handler. Message handling need to be Ack or Nack.
 // Leave the Nack might block the receiving until timeout
-// (the behaviour will be differ based on implementation).
+// (the behaviour will differ based on implementation).
 type Subscriber interface {
 	Subscribe(ctx context.Context, channel string, h Handler) error
 }
