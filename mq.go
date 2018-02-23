@@ -52,14 +52,6 @@ type Message interface {
 	Nack() error
 }
 
-// Receiver is the interface that wraps the Receive method.
-//
-// It accept ctx for cancellation.
-// Receive method will blocks until it canceled or error returned.
-type Receiver interface {
-	Receive(ctx context.Context, handler func(Message)) error
-}
-
 // Handler is the message handler.
 type Handler interface {
 	Handle(Message)
