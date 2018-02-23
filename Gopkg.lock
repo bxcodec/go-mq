@@ -6,12 +6,13 @@
   packages = [
     "compute/metadata",
     "iam",
+    "internal/optional",
     "internal/version",
     "pubsub",
     "pubsub/apiv1"
   ]
-  revision = "050b16d2314d5fc3d4c9a51e4cd5c7468e77f162"
-  version = "v0.17.0"
+  revision = "767c40d6a2e058483c25fa193e963a22da17236d"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/golang/protobuf"
@@ -76,7 +77,6 @@
   revision = "fd80eb99c8f653c847d294a001bdf2a3a6f768f5"
 
 [[projects]]
-  branch = "master"
   name = "golang.org/x/text"
   packages = [
     "collate",
@@ -94,7 +94,8 @@
     "unicode/norm",
     "unicode/rangetable"
   ]
-  revision = "4e4a3210bb54bb31f6ab2cdca2edcc0b50c420c1"
+  revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
+  version = "v0.3.0"
 
 [[projects]]
   branch = "master"
@@ -109,7 +110,7 @@
     "transport/grpc",
     "transport/http"
   ]
-  revision = "c76a25da6c114df45a86acb8873ae83eda1430b9"
+  revision = "ab90adb3efa287b869ecb698db42f923cc734972"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -182,6 +183,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "509145de6f1ef7aef1ea0ef30a674bc5df92361806db7027bd15bd040182d524"
+  inputs-digest = "85ec1ce71ab527515346c59e31e49defee5acb4f8a2c096b106dea008e9c40a3"
   solver-name = "gps-cdcl"
   solver-version = 1
