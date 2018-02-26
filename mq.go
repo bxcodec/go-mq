@@ -22,13 +22,6 @@ type Publisher interface {
 	Publish(topic string, msg []byte) error
 }
 
-// Closer is the interface that wraps the basic Close method.
-//
-// The resource of Subscriber or Publisher might need to be closed. The Closer describes the capablity to close the resource.
-type Closer interface {
-	Close() error
-}
-
 // Message represent the message from server.
 //
 // Method Ack or Nack should be invoked.
