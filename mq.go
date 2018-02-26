@@ -23,22 +23,10 @@ type Publisher interface {
 }
 
 // Closer is the interface that wraps the basic Close method.
+//
+// The resource of Subscriber or Publisher might need to be closed. The Closer describes the capablity to close the resource.
 type Closer interface {
 	Close() error
-}
-
-// SubscribePublisher is the interface that groups the basic Subscribe
-// and Publish methods.
-type SubscribePublisher interface {
-	Subscriber
-	Publisher
-}
-
-// SubscribePublishCloser is the interface that groups the basic Subscribe, Publish and Close methods.
-type SubscribePublishCloser interface {
-	Subscriber
-	Publisher
-	Closer
 }
 
 // Message represent the message from server.
