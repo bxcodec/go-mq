@@ -9,10 +9,11 @@
     "internal/optional",
     "internal/version",
     "pubsub",
-    "pubsub/apiv1"
+    "pubsub/apiv1",
+    "pubsub/internal/distribution"
   ]
-  revision = "767c40d6a2e058483c25fa193e963a22da17236d"
-  version = "v0.18.0"
+  revision = "4b98a6370e36d7a85192e7bad08a4ebd82eac2a8"
+  version = "v0.20.0"
 
 [[projects]]
   name = "github.com/golang/protobuf"
@@ -41,6 +42,25 @@
   version = "v1.2.0"
 
 [[projects]]
+  name = "go.opencensus.io"
+  packages = [
+    "exporter/stackdriver/propagation",
+    "internal",
+    "internal/tagencoding",
+    "plugin/ocgrpc",
+    "plugin/ochttp",
+    "plugin/ochttp/propagation/b3",
+    "stats",
+    "stats/internal",
+    "stats/view",
+    "tag",
+    "trace",
+    "trace/propagation"
+  ]
+  revision = "6e3f034057826b530038d93267906ec3c012183f"
+  version = "v0.6.0"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = [
@@ -53,7 +73,7 @@
     "lex/httplex",
     "trace"
   ]
-  revision = "cbe0f9307d0156177f9dd5dc85da1a31abc5f2fb"
+  revision = "b68f30494add4df6bd8ef5e82803f308e7f7c59c"
 
 [[projects]]
   branch = "master"
@@ -65,7 +85,7 @@
     "jws",
     "jwt"
   ]
-  revision = "543e37812f10c46c622c9575afd7ad22f22a12ba"
+  revision = "921ae394b9430ed4fb549668d7b087601bd60a81"
 
 [[projects]]
   branch = "master"
@@ -74,7 +94,7 @@
     "errgroup",
     "semaphore"
   ]
-  revision = "fd80eb99c8f653c847d294a001bdf2a3a6f768f5"
+  revision = "1d60e4601c6fd243af51cc01ddf169918a5407ca"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -110,7 +130,7 @@
     "transport/grpc",
     "transport/http"
   ]
-  revision = "ab90adb3efa287b869ecb698db42f923cc734972"
+  revision = "3072d9cd7f79a11909b84fdb7c9c8b9e60a57fbd"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -141,7 +161,7 @@
     "googleapis/rpc/status",
     "protobuf/field_mask"
   ]
-  revision = "2b5a72b8730b0b16380010cfe5286c42108d88e7"
+  revision = "ab0870e398d5dd054b868c0db1481ab029b9a9f2"
 
 [[projects]]
   name = "google.golang.org/grpc"
@@ -171,8 +191,8 @@
     "tap",
     "transport"
   ]
-  revision = "8e4536a86ab602859c20df5ebfd0bd4228d08655"
-  version = "v1.10.0"
+  revision = "1e2570b1b19ade82d8dbb31bba4e65e9f9ef5b34"
+  version = "v1.11.1"
 
 [[projects]]
   branch = "v1"
@@ -183,6 +203,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "85ec1ce71ab527515346c59e31e49defee5acb4f8a2c096b106dea008e9c40a3"
+  inputs-digest = "375eab23780e8512ea3de3df67006890692eac9b149a51394e82857ec8c5d625"
   solver-name = "gps-cdcl"
   solver-version = 1
