@@ -12,8 +12,8 @@
     "pubsub/apiv1",
     "pubsub/internal/distribution"
   ]
-  revision = "4b98a6370e36d7a85192e7bad08a4ebd82eac2a8"
-  version = "v0.20.0"
+  revision = "4d445121f7d55f37b70187e796b16e64f6eea7a0"
+  source = "https://github.com/GoogleCloudPlatform/google-cloud-go.git"
 
 [[projects]]
   name = "github.com/golang/protobuf"
@@ -203,6 +203,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "375eab23780e8512ea3de3df67006890692eac9b149a51394e82857ec8c5d625"
+  inputs-digest = "561389201dfc6d40c24f56c42e376550b0c9edcf741c96f78f0b881c4c086469"
   solver-name = "gps-cdcl"
   solver-version = 1

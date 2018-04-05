@@ -25,9 +25,11 @@
 #   unused-packages = true
 
 
+# waiting for version > 0.20.0
 [[constraint]]
   name = "cloud.google.com/go"
-  version = "0.20.0"
+  source = "https://github.com/GoogleCloudPlatform/google-cloud-go.git"
+  revision = "4d445121f7d55f37b70187e796b16e64f6eea7a0"
 
 [[constraint]]
   name = "github.com/satori/go.uuid"
