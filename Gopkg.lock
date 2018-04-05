@@ -57,8 +57,8 @@
     "trace",
     "trace/propagation"
   ]
-  revision = "6e3f034057826b530038d93267906ec3c012183f"
-  version = "v0.6.0"
+  revision = "076344b67ac19bcb8096c4b12440c3cf92ac3927"
+  version = "v0.7.0"
 
 [[projects]]
   branch = "master"
@@ -73,7 +73,7 @@
     "lex/httplex",
     "trace"
   ]
-  revision = "b68f30494add4df6bd8ef5e82803f308e7f7c59c"
+  revision = "b3c676e531a6dc479fa1b35ac961c13f5e2b4d2e"
 
 [[projects]]
   branch = "master"
@@ -130,7 +130,7 @@
     "transport/grpc",
     "transport/http"
   ]
-  revision = "3072d9cd7f79a11909b84fdb7c9c8b9e60a57fbd"
+  revision = "3097bf831ede4a24e08a3316254e29ca726383e3"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -161,7 +161,7 @@
     "googleapis/rpc/status",
     "protobuf/field_mask"
   ]
-  revision = "ab0870e398d5dd054b868c0db1481ab029b9a9f2"
+  revision = "35de2414665fc36f56b72d982c5af480d86de5ab"
 
 [[projects]]
   name = "google.golang.org/grpc"
@@ -191,8 +191,8 @@
     "tap",
     "transport"
   ]
-  revision = "1e2570b1b19ade82d8dbb31bba4e65e9f9ef5b34"
-  version = "v1.11.1"
+  revision = "d89cded64628466c4ab532d1f0ba5c220459ebe8"
+  version = "v1.11.2"
 
 [[projects]]
   branch = "v1"
