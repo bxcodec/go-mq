@@ -19,7 +19,13 @@ type Subscriber interface {
 //
 // Publish publishes the msg to specific topic.
 type Publisher interface {
-	Publish(topic string, msg []byte) error
+	Publish(topic string, msg []byte) PublishResult
+}
+
+// PublishResult is results of the publish.
+type PublishResult interface {
+	Get(context.Context) (id string, err error)
+	Ready() <-chan struct{}
 }
 
 // Message represent the message from server.

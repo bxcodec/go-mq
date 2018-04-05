@@ -92,7 +92,7 @@ func TestPublish(t *testing.T) {
 
 	// Submit job
 	text := uuid.NewV4().String()
-	if err := fix.pubSub.Publish(*flagTopicID, []byte(text)); err != nil {
+	if _, err := fix.pubSub.Publish(*flagTopicID, []byte(text)).Get(context.Background()); err != nil {
 		t.Fatal(err)
 	}
 

@@ -63,18 +63,18 @@ func (p *PubSub) Subscribe(ctx context.Context, channel string, h mq.Handler) er
 }
 
 // Publish message to specific topic.
-func (p *PubSub) Publish(topicID string, msg []byte) error {
+func (p *PubSub) Publish(topicID string, msg []byte) mq.PublishResult {
 	if atomic.LoadInt32(&p.state) != stateReady {
-		return errors.New("pusbub: not in ready state")
+		res := newPublishResult()
+		res.setResult("", errors.New("pusbub: not in ready state"))
+		return res
 	}
 
 	topic := p.topicOf(topicID)
 
 	p.wg.Add(1)
 	defer p.wg.Done()
-	res := topic.Publish(context.Background(), &pubsub.Message{Data: msg})
-	_, err := res.Get(context.Background())
-	return err
+	return topic.Publish(context.Background(), &pubsub.Message{Data: msg})
 }
 
 func (p *PubSub) topicOf(id string) *pubsub.Topic {
@@ -144,4 +144,49 @@ func (p *PubSub) Close() error {
 	p.stopAllTopics()
 	p.wg.Wait()
 	return p.client.Close()
+}
+
+type publishResult struct {
+	id    string
+	err   error
+	ready chan struct{}
+}
+
+func newPublishResult() *publishResult {
+	return &publishResult{
+		ready: make(chan struct{}),
+	}
+}
+
+func (r *publishResult) setResult(id string, err error) {
+	select {
+	case <-r.ready:
+		// ignore
+		return
+	default:
+		// not ready yet
+	}
+
+	r.id = id
+	r.err = err
+	close(r.ready)
+}
+
+func (r *publishResult) Get(ctx context.Context) (string, error) {
+	select {
+	case <-r.ready:
+		return r.id, r.err
+	default:
+	}
+
+	select {
+	case <-r.ready:
+		return r.id, r.err
+	case <-ctx.Done():
+		return "", ctx.Err()
+	}
+}
+
+func (r *publishResult) Ready() <-chan struct{} {
+	return r.ready
 }
