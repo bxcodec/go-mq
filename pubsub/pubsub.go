@@ -17,6 +17,12 @@ const (
 	stateClosed
 )
 
+type contextKey string
+
+const (
+	contextKeyMaxOutstandingMessages = contextKey("maxOutstandingMessages")
+)
+
 // PubSub represents the PubSub (client).
 type PubSub struct {
 	client *pubsub.Client
@@ -50,6 +56,12 @@ func (p *PubSub) Subscribe(ctx context.Context, channel string, h mq.Handler) er
 
 	p.wg.Add(1)
 	defer p.wg.Done()
+
+	maxOutstanding, ok := maxOutstandingMessagesFromContext(ctx)
+	if ok {
+		subs.ReceiveSettings.MaxOutstandingMessages = maxOutstanding
+	}
+
 	return subs.Receive(ctx, func(ctx context.Context, msg *pubsub.Message) {
 		select {
 		case <-ctx.Done():
@@ -144,6 +156,18 @@ func (p *PubSub) Close() error {
 	p.stopAllTopics()
 	p.wg.Wait()
 	return p.client.Close()
+}
+
+// ContextWithMaxOutstandingMessages decorate the ctx with MaxOutstandingMessages value.
+//
+// See pubsub.ReceiveSettings
+func ContextWithMaxOutstandingMessages(ctx context.Context, val int) context.Context {
+	return context.WithValue(ctx, contextKeyMaxOutstandingMessages, val)
+}
+
+func maxOutstandingMessagesFromContext(ctx context.Context) (int, bool) {
+	val, ok := ctx.Value(contextKeyMaxOutstandingMessages).(int)
+	return val, ok
 }
 
 type publishResult struct {

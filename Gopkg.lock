@@ -4,9 +4,15 @@
 [[projects]]
   name = "cloud.google.com/go"
   packages = [
+    "bigquery",
+    "civil",
     "compute/metadata",
     "iam",
+    "internal",
+    "internal/atomiccache",
+    "internal/fields",
     "internal/optional",
+    "internal/trace",
     "internal/version",
     "pubsub",
     "pubsub/apiv1",
@@ -121,6 +127,10 @@
   branch = "master"
   name = "google.golang.org/api"
   packages = [
+    "bigquery/v2",
+    "gensupport",
+    "googleapi",
+    "googleapi/internal/uritemplates",
     "googleapi/transport",
     "internal",
     "iterator",
@@ -158,6 +168,7 @@
     "googleapis/api/annotations",
     "googleapis/iam/v1",
     "googleapis/pubsub/v1",
+    "googleapis/rpc/code",
     "googleapis/rpc/status",
     "protobuf/field_mask"
   ]
@@ -203,6 +214,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "561389201dfc6d40c24f56c42e376550b0c9edcf741c96f78f0b881c4c086469"
+  inputs-digest = "74b1ddbbc51b3faf7615042012413c2ac3e2164f0ee501de67309df504169fd3"
   solver-name = "gps-cdcl"
   solver-version = 1
