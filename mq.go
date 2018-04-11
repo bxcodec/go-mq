@@ -5,6 +5,23 @@ import (
 	"time"
 )
 
+type contextKey string
+
+const (
+	contextKeyMaxOutstanding = contextKey("maxOutstanding")
+)
+
+// WithMaxOutstanding decorate ctx with maxOutstanding value.
+func WithMaxOutstanding(ctx context.Context, v int) context.Context {
+	return context.WithValue(ctx, contextKeyMaxOutstanding, v)
+}
+
+// MaxOutstanding value from ctx.
+func MaxOutstanding(ctx context.Context) (int, bool) {
+	v, ok := ctx.Value(contextKeyMaxOutstanding).(int)
+	return v, ok
+}
+
 // Subscriber is the interface that wraps the basic Subscribe method.
 //
 // Subscribe subscribes to a channel for receive messages. The message will be
