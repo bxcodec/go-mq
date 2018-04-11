@@ -62,9 +62,10 @@ func (p *PubSub) Subscribe(ctx context.Context, channel string, h mq.Handler) er
 		subs.ReceiveSettings.MaxOutstandingMessages = maxOutstanding
 	}
 
-	return subs.Receive(ctx, func(ctx context.Context, msg *pubsub.Message) {
+	return subs.Receive(ctx, func(ictx context.Context, msg *pubsub.Message) {
 		select {
-		case <-ctx.Done():
+		case <-ictx.Done():
+			msg.Nack()
 			return
 		default:
 		}
