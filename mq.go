@@ -11,13 +11,13 @@ const (
 	contextKeyMaxOutstanding = contextKey("maxOutstanding")
 )
 
-// WithMaxOutstanding decorate ctx with maxOutstanding value.
-func WithMaxOutstanding(ctx context.Context, v int) context.Context {
+// ContextWithMaxOutstanding decorate ctx with maxOutstanding value.
+func ContextWithMaxOutstanding(ctx context.Context, v int) context.Context {
 	return context.WithValue(ctx, contextKeyMaxOutstanding, v)
 }
 
-// MaxOutstanding value from ctx.
-func MaxOutstanding(ctx context.Context) (int, bool) {
+// MaxOutstandingFromContext get value of maxOutstanding from context.
+func MaxOutstandingFromContext(ctx context.Context) (int, bool) {
 	v, ok := ctx.Value(contextKeyMaxOutstanding).(int)
 	return v, ok
 }

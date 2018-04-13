@@ -51,7 +51,7 @@ func (p *PubSub) Subscribe(ctx context.Context, channel string, h mq.Handler) er
 	p.wg.Add(1)
 	defer p.wg.Done()
 
-	maxOutstanding, ok := mq.MaxOutstanding(ctx)
+	maxOutstanding, ok := mq.MaxOutstandingFromContext(ctx)
 	if ok {
 		subs.ReceiveSettings.MaxOutstandingMessages = maxOutstanding
 	}
