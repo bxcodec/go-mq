@@ -9,6 +9,7 @@ type contextKey string
 
 const (
 	contextKeyMaxOutstanding = contextKey("maxOutstanding")
+	contextKeyNumWorkers     = contextKey("numWorkers")
 )
 
 // ContextWithMaxOutstanding decorate ctx with maxOutstanding value.
@@ -19,6 +20,17 @@ func ContextWithMaxOutstanding(ctx context.Context, v int) context.Context {
 // MaxOutstandingFromContext get value of maxOutstanding from context.
 func MaxOutstandingFromContext(ctx context.Context) (int, bool) {
 	v, ok := ctx.Value(contextKeyMaxOutstanding).(int)
+	return v, ok
+}
+
+// ContextWithNumWorkers decorate ctx with numWorkers value.
+func ContextWithNumWorkers(ctx context.Context, v int) context.Context {
+	return context.WithValue(ctx, contextKeyNumWorkers, v)
+}
+
+// NumWorkersFromContext get value of numWorkers from context.
+func NumWorkersFromContext(ctx context.Context) (int, bool) {
+	v, ok := ctx.Value(contextKeyNumWorkers).(int)
 	return v, ok
 }
 
