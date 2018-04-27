@@ -80,3 +80,49 @@ type HandlerFunc func(Message)
 func (f HandlerFunc) Handle(m Message) {
 	f(m)
 }
+
+// AckHandler handle message and ack automatically.
+type AckHandler interface {
+	// HandleAck handle message that automatically ack when nil error returned.
+	HandleAck(Message) error
+}
+
+// AckErrNotifier provides method NotifyAckErr, invokes when Ack failed.
+type AckErrNotifier interface {
+	NotifyAckErr(Message, error)
+}
+
+// NackErrNotifier provides method NotifyNackErr, invokes when Nack failed.
+type NackErrNotifier interface {
+	NotifyNackErr(Message, error)
+}
+
+// AutoAck creates Handler from AckHandler.
+//
+// AutoAck will handle the message, when err returned by AckHandler then it will m.Nack() otherwise m.Ack().
+// To know the successful of Ack and Nack, the h should also implement the AckErrNotifier and NackErrNotifier. Implementing these interfaces are optional.
+func AutoAck(h AckHandler) Handler {
+	return HandlerFunc(func(m Message) {
+		if err := h.HandleAck(m); err != nil {
+			if err := m.Nack(); err != nil {
+				notifyNackErr(h, m, err)
+			}
+		}
+
+		if err := m.Ack(); err != nil {
+			notifyAckErr(h, m, err)
+		}
+	})
+}
+
+func notifyAckErr(v interface{}, m Message, err error) {
+	if n, ok := v.(AckErrNotifier); ok {
+		n.NotifyAckErr(m, err)
+	}
+}
+
+func notifyNackErr(v interface{}, m Message, err error) {
+	if n, ok := v.(NackErrNotifier); ok {
+		n.NotifyNackErr(m, err)
+	}
+}
