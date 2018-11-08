@@ -64,7 +64,6 @@ func main() {
 	go func() {
 		pbClient.Subscribe(context.Background(), "subscription-id", &IncomingMsgHandler{})
 	}()
-
 }
 
 type IncomingMsgHandler struct {
@@ -73,6 +72,5 @@ type IncomingMsgHandler struct {
 // Handle is implementation of Handler interface from mq.Handler
 func (i *IncomingMsgHandler) Handle(m mq.Message) {
 	// Handle Incoming Message Here
-
 }
 ```
